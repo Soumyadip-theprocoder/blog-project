@@ -71,7 +71,7 @@ app.post("/submit", (req, res) => {
 });
 
 app.get("/article", (req, res) => {
-  res.locals["article"] = req.session.message;
+  res.locals.article = req.session.message;
   delete req.session.message;
   res.render("article.ejs");
 });
@@ -88,7 +88,7 @@ app.post("/new", (req, res) => {
 });
 
 app.get("/edit", (req, res) => {
-  res.locals["article"] = req.session.message;
+  res.locals.article = req.session.message;
   delete req.session.message;
   res.render("new.ejs");
 });
