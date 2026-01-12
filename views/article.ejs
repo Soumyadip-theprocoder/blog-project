@@ -1,0 +1,10 @@
+<%- include("partials/header.ejs") %>
+<% if (locals.article) { %>
+  <h2><%=article.name%></h2>
+  <h4>by<%=article.author%></h4>
+  <p><%=article.text%></p>
+  <button class="btn primary" name="name" href="/">back to home</button
+<% } else { %>
+  <h2>No article to display</h2>
+  <button class="btn primary" name="name" href="/">back to home</button>
+<% } %>
