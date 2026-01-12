@@ -1,7 +1,6 @@
 <%- include("partials/header.ejs") %>
 
 <h1>Home Page</h1>
-<button class="btn primary" name="name" href="/edit">create new article</button>
 <% if (locals.articleslist) { %>
 <% locals.articleslist.forEach(element => { %>
   <li>

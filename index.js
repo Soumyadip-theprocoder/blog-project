@@ -47,8 +47,6 @@ function save() {
 var articles ={};
 
 load();
-save();
-
 app.get("/", (req, res) => {
   res.locals["articleslist"] = getKeys();
   res.render("index.ejs");
@@ -76,11 +74,11 @@ app.get("/article", (req, res) => {
   res.render("article.ejs");
 });
 
-app.get("/edit", (req, res) => {
-  res.render("edit.ejs");
+app.get("/new", (req, res) => {
+  res.render("new.ejs");
 });
 
-app.post("/edit", (req, res) => {
+app.post("/new", (req, res) => {
   console.log(req.body);
   setArticle(req.body.name, {author: req.body.author, text: req.body.text});
   save();
