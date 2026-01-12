@@ -1,7 +1,7 @@
 <%- include("partials/header.ejs") %>
 <% if (locals.article) { %>
   <h2><%=article.name%></h2>
-  <h4>by<%=article.author%></h4>
+  <h4>by <%=article.author%></h4>
   <p><%=article.text%></p>
   <form action="/edit" method="POST" style="display: inline;" >
   <button type="submit" class="btn btn-outline-primary" name="articleName" value="<%=article.name%>">
