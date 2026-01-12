@@ -64,7 +64,7 @@ textarea {
   resize: vertical;
 }
 
-[type="submit"] {
+input[type="submit"] {
   width: 100%;
   background: #3586ff;
   border-radius: 5px;
@@ -78,6 +78,6 @@ textarea {
   margin-top: -4px;
   font-weight: 700;
 }
-[type="submit"]:hover {
+input[type="submit"]:hover {
   background: #3586ff;
 }

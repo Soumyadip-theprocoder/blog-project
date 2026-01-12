@@ -85,6 +85,35 @@ app.post("/new", (req, res) => {
   res.redirect("/");
 });
 
+app.get("/edit", (req, res) => {
+  res.locals["article"] = req.session.message;
+  delete req.session.message;
+  res.render("new.ejs");
+});
+
+app.post("/edit", (req, res) => {
+  const article = getArticle(req.body.articleName);
+
+   if (!article) {
+    return res.redirect("/");
+  }
+
+  req.session.message = {
+    name: req.body.articleName,
+    author: article.author,
+    text: article.text
+  };
+
+  res.redirect("/edit");
+});
+
+app.post("/delete", (req, res) => {
+  const name = req.body.articleName;
+  delete articles[name];
+  save();
+  res.redirect("/");
+});
+
 app.get("/about", (req, res) => {
   res.render("about.ejs");
 });
