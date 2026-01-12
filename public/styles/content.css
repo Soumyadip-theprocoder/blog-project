@@ -79,5 +79,6 @@ input[type="submit"] {
   font-weight: 700;
 }
 input[type="submit"]:hover {
-  background: #3586ff;
+  box-shadow: 0 0 20px white;
+  background-color: #2a6ed6;
 }

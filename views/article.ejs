@@ -3,18 +3,18 @@
   <h2><%=article.name%></h2>
   <h4>by<%=article.author%></h4>
   <p><%=article.text%></p>
-  <form action="/edit" method="POST">
-  <button type="submit" class="btn btn-primary" name="articleName" value="<%=article.name%>">
+  <form action="/edit" method="POST" style="display: inline;" >
+  <button type="submit" class="btn btn-outline-primary" name="articleName" value="<%=article.name%>">
   edit
   </button>
   </form>
-  <a class="btn btn-primary" name="name" href="/">home</a>
-  <form action="/delete" method="POST">
-  <button type="submit" class="btn btn-link p-0" name="articleName" value="<%=article.name%>">
-  delete
+  <a class="btn btn-outline-primary" name="name" href="/">home</a>
+  <form action="/delete" method="POST" style="display: inline;">
+  <button type="submit" class="btn btn-outline-danger" name="articleName" value="<%=article.name%>">
+  <i class="fas fa-trash"></i> Delete
   </button>
   </form>
 <% } else { %>
   <h2>No article to display</h2>
-  <a class="btn primary" name="name" href="/">back to home</a>
+  <a class="btn btn-outline-primary" name="name" href="/">back to home</a>
 <% } %>
