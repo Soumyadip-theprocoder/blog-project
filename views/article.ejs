@@ -5,10 +5,10 @@
   <p><%=article.text%></p>
   <form action="/edit" method="POST" style="display: inline;" >
   <button type="submit" class="btn btn-outline-primary" name="articleName" value="<%=article.name%>">
-  edit
+  <i class="fas fa-pen"></i>edit
   </button>
   </form>
-  <a class="btn btn-outline-primary" name="name" href="/">home</a>
+  <a class="btn btn-outline-primary" name="name" href="/"><i class="fas fa-home"></i>home</a>
   <form action="/delete" method="POST" style="display: inline;">
   <button type="submit" class="btn btn-outline-danger" name="articleName" value="<%=article.name%>">
   <i class="fas fa-trash"></i> Delete
