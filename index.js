@@ -84,7 +84,19 @@ app.post("/new", (req, res) => {
   console.log(req.body);
   setArticle(req.body.name, {author: req.body.author, text: req.body.text});
   save();
-  res.redirect("/");
+
+  const article = getArticle(req.body.name);
+
+  if (!article) {
+    return res.redirect("/");
+  }
+
+  req.session.message = {
+    name: req.body.name,
+    author: article.author,
+    text: article.text
+  };
+  res.redirect("/article");
 });
 
 app.get("/edit", (req, res) => {
