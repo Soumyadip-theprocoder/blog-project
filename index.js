@@ -47,6 +47,8 @@ function save() {
 var articles ={};
 
 load();
+
+
 app.get("/", (req, res) => {
   res.locals["articleslist"] = getKeys();
   res.render("index.ejs");

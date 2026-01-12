@@ -11,5 +11,8 @@
   </form>
 </li>
 <% }) %>
+<% } else { %>
+  <p>No articles found.</p>
+  <a class="btn btn-primary" href="/new">Add New Article</a>
 <% } %>
 <%- include("partials/footer.ejs") %>
