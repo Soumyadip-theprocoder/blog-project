@@ -50,7 +50,8 @@ load();
 
 
 app.get("/", (req, res) => {
-  res.locals["articleslist"] = getKeys();
+  res.locals.articleslist = getKeys();
+  res.locals.articles=articles;
   res.render("index.ejs");
 });
 
@@ -82,7 +83,7 @@ app.get("/new", (req, res) => {
 
 app.post("/new", (req, res) => {
   console.log(req.body);
-  setArticle(req.body.name, {author: req.body.author, text: req.body.text});
+  setArticle(req.body.name, {author: req.body.author, text: req.body.text, createdAt: (new Date()).toDateString()});
   save();
 
   const article = getArticle(req.body.name);
@@ -115,7 +116,7 @@ app.post("/edit", (req, res) => {
   req.session.message = {
     name: req.body.articleName,
     author: article.author,
-    text: article.text
+    text: article.text,
   };
 
   res.redirect("/edit");

@@ -82,3 +82,29 @@ input[type="submit"]:hover {
   box-shadow: 0 0 20px white;
   background-color: #2a6ed6;
 }
+
+.post-title {
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+.post-title:hover {
+  text-decoration: underline;
+}
+
+/* Preview text */
+.post-preview {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* mobile */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Actions */
+.post-actions a,
+.post-actions button {
+  font-size: 0.85rem;
+}
