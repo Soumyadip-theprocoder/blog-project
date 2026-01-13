@@ -85,7 +85,7 @@ app.post("/new", (req, res) => {
   console.log(req.body);
   setArticle(req.body.name, {author: req.body.author, text: req.body.text, createdAt: (new Date()).toDateString()});
   save();
-
+  load();
   const article = getArticle(req.body.name);
 
   if (!article) {
