@@ -1,14 +1,15 @@
 <%- include("partials/header.ejs") %>
 <% if (locals.article) { %>
- <h2>Editing Article: <%=article.name%></h2>
+ <h2>Editing Article: <%=article.title%></h2>
 <% } else { %>
 <h1>New Article</h1>
 <% } %>
 <form action="/new" method="POST">
-  <input name="name" type="text" class="feedback-input" placeholder="Name" value="<%= locals.article ? locals.article.name : null %>" />
-  <input name="author" type="text" class="feedback-input" placeholder="Author Name" value="<%= locals.article ? locals.article.author : null %>" />
-  <textarea name="text" class="feedback-input" placeholder="Comment"><%= locals.article ? locals.article.text : null %></textarea>
-  <button type="submit" value="SUBMIT">Create Article</button>
+  <input type="hidden" name="id" value="<%= locals.article ? locals.article.id : null %>"/>
+  <input name="title" type="text" class="feedback-input" placeholder="Title" value="<%= locals.article ? locals.article.title : null %>" required/>
+  <input name="author" type="text" class="feedback-input" placeholder="Author Name" value="<%= locals.article ? locals.article.author : null %>" required/>
+  <textarea name="text" class="feedback-input" placeholder="Comment" required><%= locals.article ? locals.article.text : null %></textarea>
+  <button class="btn btn-outline-primary" type="submit" value="SUBMIT">Save Article</button>
 </form>
 
 <%- include("partials/footer.ejs") %>

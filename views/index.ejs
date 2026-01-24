@@ -6,13 +6,13 @@
   <div class="col-lg-7 col-md-9 col-11 mx-auto">
 
     <% locals.articleslist.forEach(element => { %>
-      <article class="py-4 border-bottom">
+      <article class="py-4">
         <li>
         <!-- Title -->
-        <form action="/submit" method="POST">
-          <button type="submit" class="d-flex align-items-center gap-2 text-decoration-none post-title text-dark fw-semibold" name="articleName" value="<%=element%>">
+        <form action="/" method="POST">
+          <button type="submit" class="d-flex align-items-center gap-2 text-decoration-none post-title text-dark fw-semibold" name="id" value="<%=element%>">
             <i class="fas fa-file-alt text-muted"></i>
-            <span><%= element %></span>
+            <span><%= articles[element].title %></span>
           </button>
         </form>
 
@@ -33,12 +33,12 @@
 
           <div class="post-actions">
             <form action="/edit" method="POST" style="display: inline;" >
-            <button type="submit" class="text-decoration-none me-3" name="articleName" value="<%=element%>">
+            <button type="submit" class="text-decoration-none me-3 btn btn-outline-primary" name="id" value="<%=element%>">
               <i class="fas fa-edit"></i> Edit
             </button>
             </form>
             <form action="/delete" method="POST" class="d-inline">
-              <button type="submit" class="btn btn-link p-0 text-danger" name="articleName" value="<%=element%>" >
+              <button type="submit" class="btn btn-outline-danger" name="id" value="<%=element%>" >
                 <i class="fas fa-trash"></i> Delete
               </button>
             </form>

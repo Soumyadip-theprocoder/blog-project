@@ -2,6 +2,7 @@ import express from "express";
 import session from "express-session";
 import ejs from "ejs";
 import fs from "fs";
+import { title } from "process";
 
 const app = express();
 const port = 3000;
@@ -55,15 +56,15 @@ app.get("/", (req, res) => {
   res.render("index.ejs");
 });
 
-app.post("/submit", (req, res) => {
-  const article = getArticle(req.body.articleName);
+app.post("/", (req, res) => {
+  const article = getArticle(req.body.id);
 
   if (!article) {
     return res.redirect("/");
   }
 
   req.session.message = {
-    name: req.body.articleName,
+    name: article.title,
     author: article.author,
     text: article.text
   };
@@ -83,19 +84,20 @@ app.get("/new", (req, res) => {
 
 app.post("/new", (req, res) => {
   console.log(req.body);
-  setArticle(req.body.name, {author: req.body.author, text: req.body.text, createdAt: (new Date()).toDateString()});
+  setArticle(req.body.id||Date.now(), {title:req.body.title, author: req.body.author, text: req.body.text, createdAt: (new Date()).toDateString()});
   save();
   load();
-  const article = getArticle(req.body.name);
+  const article = getArticle(req.body.id);
 
   if (!article) {
     return res.redirect("/");
   }
 
   req.session.message = {
-    name: req.body.name,
+    id: req.body.id,
+    title: article.title,
     author: article.author,
-    text: article.text
+
   };
   res.redirect("/article");
 });
@@ -107,24 +109,25 @@ app.get("/edit", (req, res) => {
 });
 
 app.post("/edit", (req, res) => {
-  const article = getArticle(req.body.articleName);
+  const article = getArticle(req.body.id);
 
    if (!article) {
     return res.redirect("/");
   }
 
   req.session.message = {
-    name: req.body.articleName,
+    id: req.body.id,
+    title: article.title,
     author: article.author,
-    text: article.text,
+    text: article.text
   };
 
   res.redirect("/edit");
 });
 
 app.post("/delete", (req, res) => {
-  const name = req.body.articleName;
-  delete articles[name];
+  const id = req.body.id;
+  delete articles[id];
   save();
   res.redirect("/");
 });

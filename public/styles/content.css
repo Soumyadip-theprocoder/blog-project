@@ -34,9 +34,6 @@ p {
   object-fit: cover;
   border-radius: 50%;
 }
-form {
-  margin-top: 50px;
-}
 
 .feedback-input {
   color: black;
@@ -107,4 +104,51 @@ input[type="submit"]:hover {
 .post-actions a,
 .post-actions button {
   font-size: 0.85rem;
+}
+
+/* ===== Blog list cleanup ===== */
+
+ul, li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+form.blog-form {
+  margin-top: 50px;
+}
+
+.post-title {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  transition: opacity 0.2s ease;
+}
+
+.post-title:hover {
+  opacity: 0.85;
+  text-decoration: underline;
+}
+.post-preview {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* mobile */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
