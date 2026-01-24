@@ -7,13 +7,13 @@
   <div class="article-content-scroll"></div>
   <p class="lh-lg"><%=article.text%></p>
   <form action="/edit" method="POST" style="display: inline;" >
-  <button type="submit" class="btn btn-outline-primary" name="articleName" value="<%=article.name%>">
+  <button type="submit" class="btn btn-outline-primary" name="id" value="<%=article.id%>">
   <i class="fas fa-pen"></i>edit
   </button>
   </form>
   <a class="btn btn-outline-primary" name="name" href="/"><i class="fas fa-home"></i>home</a>
   <form action="/delete" method="POST" style="display: inline;">
-  <button type="submit" class="btn btn-outline-danger" name="articleName" value="<%=article.name%>">
+  <button type="submit" class="btn btn-outline-danger" name="id" value="<%=article.id%>">
   <i class="fas fa-trash"></i> Delete
   </button>
   </form>

@@ -1,8 +1,6 @@
 import express from "express";
-import session from "express-session";
 import ejs from "ejs";
 import fs from "fs";
-import { title } from "process";
 
 const app = express();
 const port = 3000;
@@ -11,18 +9,15 @@ app.use(express.static("public"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(session({
-  secret: "secret-key",
-  resave: false,
-  saveUninitialized: true
-}));
 
 
-function getArticle(name) { 
-  return articles[name]; 
+function getArticle(id) { 
+  const article = articles[id];
+  article.id = id;  
+  return article; 
 }
-function setArticle(name, content) { 
-  articles[name] = content; 
+function setArticle(id, content) { 
+  articles[id] = content; 
 }
 function getKeys() { 
   return Object.keys(articles); 
@@ -57,24 +52,16 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  const article = getArticle(req.body.id);
+  res.redirect(`/article/${req.body.id}`);
+});
+
+app.get("/article/:id", (req, res) => {
+  const article = getArticle(req.params.id);
 
   if (!article) {
     return res.redirect("/");
   }
-
-  req.session.message = {
-    name: article.title,
-    author: article.author,
-    text: article.text
-  };
-
-  res.redirect("/article");
-});
-
-app.get("/article", (req, res) => {
-  res.locals.article = req.session.message;
-  delete req.session.message;
+  res.locals.article = article;
   res.render("article.ejs");
 });
 
@@ -84,45 +71,26 @@ app.get("/new", (req, res) => {
 
 app.post("/new", (req, res) => {
   console.log(req.body);
-  setArticle(req.body.id||Date.now(), {title:req.body.title, author: req.body.author, text: req.body.text, createdAt: (new Date()).toDateString()});
+  const id = req.body.id || Date.now();
+  setArticle(id, {title:req.body.title, author: req.body.author, text: req.body.text, createdAt: (new Date()).toDateString()});
   save();
   load();
-  const article = getArticle(req.body.id);
+
+  res.redirect(`/article/${id}`);
+});
+
+app.get("/edit/:id", (req, res) => {
+  const article = getArticle(req.params.id);
 
   if (!article) {
     return res.redirect("/");
   }
-
-  req.session.message = {
-    id: req.body.id,
-    title: article.title,
-    author: article.author,
-
-  };
-  res.redirect("/article");
-});
-
-app.get("/edit", (req, res) => {
-  res.locals.article = req.session.message;
-  delete req.session.message;
+  res.locals.article = article;
   res.render("new.ejs");
 });
 
 app.post("/edit", (req, res) => {
-  const article = getArticle(req.body.id);
-
-   if (!article) {
-    return res.redirect("/");
-  }
-
-  req.session.message = {
-    id: req.body.id,
-    title: article.title,
-    author: article.author,
-    text: article.text
-  };
-
-  res.redirect("/edit");
+  res.redirect(`/edit/${req.body.id}`);
 });
 
 app.post("/delete", (req, res) => {
