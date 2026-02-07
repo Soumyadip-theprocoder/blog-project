@@ -4,6 +4,7 @@
 <% } else { %>
 <h1>New Article</h1>
 <% } %>
+<div class ="mb-5">
 <form action="/new" method="POST">
   <input type="hidden" name="id" value="<%= locals.article ? locals.article.id : null %>"/>
   <input name="title" type="text" class="feedback-input" placeholder="Title" value="<%= locals.article ? locals.article.title : null %>" required/>
@@ -11,5 +12,5 @@
   <textarea name="text" class="feedback-input" placeholder="Comment" required><%= locals.article ? locals.article.text : null %></textarea>
   <button class="btn btn-outline-primary" type="submit" value="SUBMIT">Save Article</button>
 </form>
-
+</div>
 <%- include("partials/footer.ejs") %>

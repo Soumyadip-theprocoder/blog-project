@@ -1,25 +1,24 @@
 <%- include("partials/header.ejs") %>
 <% if (locals.article) { %>
   <div class="container my-5">
-  <div class="col-lg-8 col-md-10 col-12 mx-auto">
-  <h2 class="mb-3"><%=article.title%></h2>
-  <h4 class="text-muted mb-3"><i class="fas fa-user"></i><%=article.author%></h4>
-  <small class="text-muted"><i class="far fa-calendar-alt me-1"></i><%= article.createdAt %></small>
-  <div class="article-content-scroll"></div>
-  <p class="lh-lg"><%=article.text%></p>
-  <form action="/edit" method="POST" style="display: inline;" >
-  <button type="submit" class="btn btn-outline-primary" name="id" value="<%=article.id%>">
-  <i class="fas fa-pen"></i>edit
-  </button>
-  </form>
-  <a class="btn btn-outline-primary" name="name" href="/"><i class="fas fa-home"></i>home</a>
-  <form action="/delete" method="POST" style="display: inline;">
-  <button type="submit" class="btn btn-outline-danger" name="id" value="<%=article.id%>">
-  <i class="fas fa-trash"></i> Delete
-  </button>
-  </form>
-  </div>
-  </div>
+    <div class="col-lg-8 col-md-10 col-12 mx-auto">
+      <h2 class="mb-3"><%=article.title%></h2>
+      <h4 class="text-muted mb-3"><i class="fas fa-user"></i><%=article.author%></h4>
+      <small class="text-muted"><i class="far fa-calendar-alt me-1"></i><%= article.createdAt %></small>
+      <div class="article-content-scroll">
+        <p class="lh-lg"><%=article.text%></p>
+        <form action="/edit" method="POST" style="display: inline;" >
+          <button type="submit" class="btn btn-outline-primary" name="id" value="<%=article.id%>">
+          <i class="fas fa-pen"></i>edit
+          </button>
+        </form>
+        <a class="btn btn-outline-primary" name="name" href="/"><i class="fas fa-home"></i>home</a>
+        <form action="/delete" method="POST" style="display: inline;">
+          <button type="submit" class="btn btn-outline-danger" name="id" value="<%=article.id%>">
+          <i class="fas fa-trash"></i> Delete
+          </button>
+        </form>
+    </div>
   </div>
 <% } else { %>
   <h2>No article to display</h2>
